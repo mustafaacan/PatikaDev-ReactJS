@@ -1,0 +1,24 @@
+{
+  "name": "firstproject",
+  "version": "1.0.0",
+  "description": "Just practical purpose",
+  "keywords": [
+    "nodejs",
+    "reactjs"
+  ],
+  "homepage": "https://github.com/mustafaacan/PatikaDev-ReactJS#readme",
+  "bugs": {
+    "url": "https://github.com/mustafaacan/PatikaDev-ReactJS/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mustafaacan/PatikaDev-ReactJS.git"
+  },
+  "license": "ISC",
+  "author": "Mustafa Can",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
