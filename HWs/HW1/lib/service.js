@@ -10,7 +10,8 @@ async function data(methodname, url, userID) {
   } catch (err) {
     const status = err?.response?.status;
     return await Promise.reject(
-      new Error(`method ${methodname} failed${status ? `: ${status}` : ""}`));
+      new Error(`method ${methodname} failed${status ? `: ${status}` : ""}`),
+    );
   }
 }
 
