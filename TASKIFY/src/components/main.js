@@ -40,6 +40,10 @@ export default function Main() {
   function selectAll() {
     const areAllCompleted = listItems.every((item) => item.completed);
 
+    // prevList is not a unique keyword !!! for the State usage, old value / list can be given as referance for new ops
+    // so while defining the function, old value / list can be inserted with a keyword such oldList, prevList, oldValue
+    // this usage an example to callback functions
+
     setListItems((prevList) =>
       prevList.map((item) => ({
         ...item,
