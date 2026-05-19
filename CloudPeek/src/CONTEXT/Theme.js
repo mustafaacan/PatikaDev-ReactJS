@@ -8,7 +8,7 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const readFromStorage = localStorage.getItem("theme")
     ? localStorage.getItem("theme")
-    : "light";
+    : "dark";
 
   const [theme, setTheme] = useState(readFromStorage);
   const values = { theme, setTheme };

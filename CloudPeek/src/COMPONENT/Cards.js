@@ -9,8 +9,8 @@ export default function Cards() {
   }
 
   return (
-    <div className="container mb-5 w-50">
-      <div className="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-4">
+    <div className="container mb-5 w-75">
+      <div className="row row-cols-1 row-cols-md-1 row-cols-lg-2  g-4">
         {forecast.map((day) => (
           <div className="col" key={day.date}>
             <div className="card h-100 shadow-sm">

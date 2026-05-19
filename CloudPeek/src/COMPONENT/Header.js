@@ -6,13 +6,7 @@ import { useInfo } from "../CONTEXT/ProcessInfo";
 import { useWeather } from "../CONTEXT/Weather";
 import getTimeZone from "./../FUNCTIONS/timeZoneCalculator";
 import getForecast from "../FUNCTIONS/getWeatherInfo";
-
-/* EKLENTILER
-1) En güncel data ve çekilme tarihi neyse onu localStorafe içinde tut ve ekranda belirt
-4) Tüm dosyaların içine docstringleri ve açıklamaları ekle YADA gelen her mesaj birbirini ezsin.
-hangisi daha iyi oluyorsa öyle yap.
-6) Her işleme başladığında weather bilgisini boşalt ki sayfada eski veriler gözükmesin
-*/
+import FormattedDate from "../FUNCTIONS/getDate";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
@@ -25,34 +19,39 @@ export default function Header() {
   };
 
   // WEATHER OPS
+  // The process order --> 1) Location info 2) TimeZone info (with both successful data) 3) Weather Info for 10 days
+  // Under the lack of location or timezone info, weather could not be calculated. beacuse as payload both info are needed.
   const handleWeather = async () => {
     let MESSAGE = "";
     setWeather({
       forecast: [],
     });
 
-    setInfo({
+    setInfo((prev) => ({
+      ...prev,
       isActive: true,
       message: "Location and Timezone Information Obtaining...",
       processStatus: true,
-    });
+    }));
 
     // location information collecting
     const loc = await getLocation();
     if (!loc.status) {
       MESSAGE = `Locationing Failed. System message : ${loc.mes}.`;
-      setInfo({
+      setInfo((prev) => ({
+        ...prev,
         processStatus: false,
-      });
+      }));
     } else {
       MESSAGE += `Locationing Process Completed with ${loc.accuracy > 100 ? 100 : loc.accuracy || 0}% accuracy. \n Current Location: ${loc.region} (${loc.city}) - ${loc.country}  \n`;
       // timezone information collecting
       const time = getTimeZone();
       if (time.tz === "Unknown") {
         MESSAGE = `TimeZone Failed. System message : ${time.mes}.`;
-        setInfo({
+        setInfo((prev) => ({
+          ...prev,
           processStatus: false,
-        });
+        }));
       } else {
         MESSAGE += `Timezone : ${time.tz} \n`;
         const city = {
@@ -62,27 +61,26 @@ export default function Header() {
           lon: loc.longitude,
           t: time.tz,
         };
-        console.log(city);
         const response = await getForecast(city);
-        console.log(response);
         setWeather(response);
+
+        const formattedDate = FormattedDate();
+
+        setInfo((prev) => ({
+          ...prev,
+          latestUpdate: formattedDate,
+        }));
       }
     }
 
     // End of the process
-    const now = new Date();
-    const day = now.getDate();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
-    const hour = now.getHours();
-    const minute = now.getMinutes();
 
-    setInfo({
+    setInfo((prev) => ({
+      ...prev,
       isActive: true,
       message: MESSAGE,
       processStatus: false,
-      latestUpdate: `${year}-${month}-${day} ${hour}:${minute}`,
-    });
+    }));
   };
 
   return (
