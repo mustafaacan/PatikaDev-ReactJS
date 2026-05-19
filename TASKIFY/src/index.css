@@ -9,7 +9,7 @@ html,
 body {
 	margin: 0;
 	margin-top: 150px;
-	padding: 0;
+	padding: 10px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -158,12 +158,35 @@ body {
 .toggle-all + label:before {
 	content: '❯';
 	font-size: 22px;
-	color: #e6e6e6;
+	color: #979696;
 	padding: 10px 27px 10px 27px;
 }
 
+
+.toggle-all + label:hover::after {
+  content: "Select all";
+  position: absolute;
+  left: -40px;
+  bottom: 10px;
+  font-size: 15px;
+  color: #161616;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
 .toggle-all:checked + label:before {
-	color: #737373;
+	color: #0e0e0e;
+}
+
+.toggle-all:checked + label:hover::after {
+  content: "Deselect all";
+  position: absolute;
+  left: -47px;
+  bottom: 10px;
+  font-size: 15px;
+  color: #161616;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .todo-list {
@@ -221,7 +244,7 @@ body {
 		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
 		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
 	*/
-	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23cfcfcf%22%20stroke-width%3D%224%22/%3E%3C/svg%3E');
 	background-repeat: no-repeat;
 	background-position: center left;
 }
