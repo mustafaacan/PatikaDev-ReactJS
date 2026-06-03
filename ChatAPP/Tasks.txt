@@ -1,0 +1,11 @@
+Dikkat: Farklı cihazdan bağlantı sağlanınca mesajlaşma olmuyor
+
+1) Dark Theme eklemeyi unutma
+2) Yeni mesaj geldiğinde uyarı verme olayı olsun (sesli ve görsel)
+3) Arka planda güzel bir resim olsun
+4) Redis temizle eklentisi olsun (tüm kullanıcılarda)
+5) Genel dizayn ile oynayabiliriz
+6) Emoji gibi karaterleri ekleme yolu bulmak lazım
+7) En son mesaj geldiğinde sayfanın altına otomatik olarak scroll olsun
+**8) sayfayı yenileyince tüm mesajları karşı kullanıcıdan gelmiş gibi gösteriyor. bunu nasıl çözebiliriz ?
+
